@@ -18,13 +18,14 @@ jobs:
 
     - name: Copy coverage report from Docker to host
       run: |
+        mkdir -p ${{ github.workspace }}/coverage
         docker cp weathersvc-test-container:/app/tests/TestResults/ /github/workspace/coverage
 
     - name: Upload coverage report as artifact
       uses: actions/upload-artifact@v2
       with:
         name: coverage-report
-        path: /github/workspace/coverage
+        path: ${{ github.workspace }}/coverage
 
 
   
