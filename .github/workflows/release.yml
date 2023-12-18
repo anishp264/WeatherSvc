@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on: push
 
 env:
-    IMAGE_NAME: weather_svc_image
+    IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/weather_svc_image
 
 jobs:
   build_and_test:
