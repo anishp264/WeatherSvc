@@ -16,8 +16,8 @@ namespace WeatherSvcTests
             var weatherForecasts = controller.Get();
             if (weatherForecasts is not null)
             {
-                //Assert.True(weatherForecasts.Any());
-                Assert.False(true);
+                Assert.True(weatherForecasts.Any());
+                //Assert.False(true);
             }
             //Assert.IsType<OkResult>(weatherForecasts);
             Assert.False(false);
