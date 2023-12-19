@@ -13,6 +13,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Copy Nuget Config file
+      run: |
+        cp ./NuGet.Config NuGet.Config
+
     - name: Build the Docker image
       run: docker build -t weathersvctestdocker -f Dockerfile .
 
