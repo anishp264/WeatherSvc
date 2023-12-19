@@ -15,7 +15,7 @@ jobs:
 
     - name: Copy Nuget Config file
       run: |
-        cp ./NuGet.Config NuGet.Config
+        cp ./TestNuGet.Config NuGet.Config
 
     - name: Build the Docker image
       run: docker build -t weathersvctestdocker -f Dockerfile .
