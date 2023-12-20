@@ -17,9 +17,7 @@ jobs:
       run: cat Config.xml
 
     - name: Copy config.xml
-      run: |
-        mkdir -p config
-        cp Config.xml config/
+      run: echo Config.xml > NuGet.Config
 
     - name: Build the Docker image
       run: docker build -t weathersvctestdocker -f Dockerfile .
