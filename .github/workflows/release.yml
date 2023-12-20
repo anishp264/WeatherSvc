@@ -17,7 +17,7 @@ jobs:
       run: cat Config.xml
 
     - name: Copy config.xml
-      run: echo Config.xml > NuGet.Config
+      run: cp Config.xml NuGet.Config
 
     - name: Show NuGet Contents
       run: cat NuGet.Config
