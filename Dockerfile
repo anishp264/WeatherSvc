@@ -5,7 +5,7 @@ WORKDIR /src
 # Copy the test project file and restore dependencies
 COPY ["WeatherSvcApi/WeatherSvcApi.csproj", "WeatherSvcApi/"]
 COPY ["WeatherSvcTests/WeatherSvcTests.csproj", "WeatherSvcTests/"]
-COPY ["NuGet.config", "./"]
+#COPY ["NuGet.config", "./"]
 RUN dotnet restore "WeatherSvcTests/WeatherSvcTests.csproj"
 
 # Copy the necessary test project files
