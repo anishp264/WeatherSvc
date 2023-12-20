@@ -2,6 +2,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 
+COPY ["NuGet.config", "./"]
 # Copy the test project file and restore dependencies
 COPY ["WeatherSvcApi/WeatherSvcApi.csproj", "WeatherSvcApi/"]
 COPY ["WeatherSvcTests/WeatherSvcTests.csproj", "WeatherSvcTests/"]
