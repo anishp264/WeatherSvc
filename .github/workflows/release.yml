@@ -14,7 +14,12 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Show Contents
-      run: echo Config.xml
+      run: cat Config.xml
+
+    - name: Copy config.xml
+      run: |
+        mkdir -p config
+        cp Config.xml config/
 
     - name: Build the Docker image
       run: docker build -t weathersvctestdocker -f Dockerfile .
