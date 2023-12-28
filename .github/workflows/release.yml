@@ -7,11 +7,24 @@ env:
 
 jobs:
   build_and_test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+
+    - name: Install Docker
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+        sudo apt-get update
+        sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+
+    - name: Test Docker Installation
+      run: |
+        docker --version
 
     - name: Show Contents
       run: cat Config.xml
@@ -22,16 +35,22 @@ jobs:
     - name: Show NuGet Contents
       run: cat NuGet.Config
 
+    - name: Debugging information
+      run: |
+        which docker
+        docker --version
+        env
+
     - name: Build the Docker image
-      run: docker build -t weathersvctestdocker -f Dockerfile .
+      run: sudo docker build -t weathersvctestdocker -f Dockerfile .
 
     - name: Run tests in Docker
-      run: docker run --name weathersvc-test-container weathersvctestdocker
+      run: sudo docker run --name weathersvc-test-container weathersvctestdocker
 
     - name: Copy coverage report from Docker to host
       run: |
         mkdir -p ${{ github.workspace }}/coverage
-        docker cp weathersvc-test-container:/app/tests/TestResults/ ${{ github.workspace }}/coverage
+        sudo docker cp weathersvc-test-container:/app/tests/TestResults/ ${{ github.workspace }}/coverage
 
     - name: Upload coverage report as artifact
       if: always()
