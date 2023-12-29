@@ -47,7 +47,7 @@ jobs:
     - name: Remove Existing Docker Container if it Exists
       run: |
         if [ $(docker ps -a -q -f name=weathersvc-test-container) ]; then
-          docker rm weathersvc-test-container
+          sudo docker rm weathersvc-test-container
         fi
 
     - name: Run tests in Docker
