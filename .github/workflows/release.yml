@@ -41,11 +41,6 @@ jobs:
         docker --version
         env
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '3.1' # Specify the .NET version
-
     - name: Build the Docker image
       run: sudo docker build -t weathersvctestdocker -f Dockerfile .
 
@@ -63,6 +58,11 @@ jobs:
         mkdir -p ${{ github.workspace }}/coverage
         sudo docker cp weathersvc-test-container:/app/tests/TestResults/ ${{ github.workspace }}/coverage
 
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '7.0.1' # Specify the .NET version
+    
     - name: Install ReportGenerator
       run: sudo dotnet tool install -g dotnet-reportgenerator-globaltool
 
