@@ -44,6 +44,12 @@ jobs:
     - name: Build the Docker image
       run: sudo docker build -t weathersvctestdocker -f Dockerfile .
 
+    - name: Remove Existing Docker Container if it Exists
+      run: |
+        if [ $(docker ps -a -q -f name=weathersvc-test-container) ]; then
+          docker rm weathersvc-test-container
+        fi
+
     - name: Run tests in Docker
       run: sudo docker run --name weathersvc-test-container weathersvctestdocker
 
