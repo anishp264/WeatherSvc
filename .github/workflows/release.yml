@@ -67,15 +67,20 @@ jobs:
         mkdir -p ${{ github.workspace }}/coverage
         sudo docker cp weathersvc-test-container:/app/tests/TestResults/ ${{ github.workspace }}/coverage
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: '6.x' # Specify the .NET version
+    #- name: Setup .NET Core
+      #uses: actions/setup-dotnet@v2
+      #with:
+        #dotnet-version: '6.x' # Specify the .NET version
     
     - name: Install ReportGenerator
       run: |
-        sudo apt install dotnet-host
+        #sudo apt install dotnet-host
         sudo dotnet tool install -g dotnet-reportgenerator-globaltool
+
+    #- name: Install ReportGenerator
+      #run: |
+        #sudo apt install -y dotnet-sdk-6.0
+        #sudo dotnet tool install -g dotnet-reportgenerator-globaltool
 
     - name: Generate Code Coverage Report
       run: |
