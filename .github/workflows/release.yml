@@ -73,7 +73,9 @@ jobs:
         dotnet-version: '6.x' # Specify the .NET version
     
     - name: Install ReportGenerator
-      run: sudo dotnet tool install -g dotnet-reportgenerator-globaltool
+      run: |
+        sudo apt install dotnet-host
+        sudo dotnet tool install -g dotnet-reportgenerator-globaltool
 
     - name: Generate Code Coverage Report
       run: |
