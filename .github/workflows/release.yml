@@ -15,8 +15,8 @@ jobs:
       
     - name: Delete WeatherSvc Directory
       run: |
-        if [ -d "WeatherSvc" ]; then
-          sudo rm -rf WeatherSvc
+        if [ -d "coverage" ]; then
+          sudo rm -rf coverage
         fi    
         
     - name: Checkout code
