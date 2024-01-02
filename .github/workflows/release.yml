@@ -11,7 +11,9 @@ jobs:
 
     steps:
     - name: Show all files
-      run: ls -l
+      run: |
+        cd anishvm/actions-runner/_work
+        ls -l
       
     - name: Delete WeatherSvc Directory
       run: |
