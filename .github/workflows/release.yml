@@ -79,7 +79,7 @@ jobs:
 
     - name: Install ReportGenerator if not present
       run: |
-        if [ ! -f $HOME/.dotnet/tools/reportgenerator ]; then
+        if [ ! -f $HOME/.dotnet/tools/dotnet-reportgenerator-globaltool ]; then
           echo "ReportGenerator not found, installing..."
           sudo dotnet tool install -g dotnet-reportgenerator-globaltool
         else
