@@ -54,7 +54,13 @@ jobs:
       - name: Create code coverage report
         run: |
           dotnet tool install -g dotnet-reportgenerator-globaltool
-          reportgenerator -reports:coverage/*/coverage.cobertura.xml -targetdir:CodeCoverage -reporttypes:'MarkdownSummaryGithub;Cobertura'
+          reportgenerator -reports:coverage/*/coverage.cobertura.xml -targetdir:CodeCoverage -reporttypes:'MarkdownSummaryGithub;Cobertura;Html'
   
       - name: Write to Job Summary
         run: cat CodeCoverage/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload coverage report as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage-report
+          path: CodeCoverage/
