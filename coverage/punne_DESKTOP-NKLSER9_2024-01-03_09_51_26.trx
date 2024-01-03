@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="1d89d2d4-8224-4f51-92ed-1fd790d7a7f3" name="punne@DESKTOP-NKLSER9 2024-01-03 09:51:26" runUser="DESKTOP-NKLSER9\punne" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2024-01-03T09:51:26.6341648+02:00" queuing="2024-01-03T09:51:26.6341652+02:00" start="2024-01-03T09:51:22.8963348+02:00" finish="2024-01-03T09:51:26.6425958+02:00" />
+  <TestSettings name="default" id="3db98095-916a-4b1b-b771-c3ad1c7b9dec">
+    <Deployment runDeploymentRoot="punne_DESKTOP-NKLSER9_2024-01-03_09_51_26" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="3301158f-9f39-444e-a9c4-b7d3c0972981" testId="16dfcdb1-c21e-cfc9-ce2c-c7ad6fb37cdf" testName="WeatherSvcTests.WeatherForecastControllerTest.WeatherForecastEndpoint_exists" computerName="DESKTOP-NKLSER9" duration="00:00:00.0046641" startTime="2024-01-03T09:51:26.4541105+02:00" endTime="2024-01-03T09:51:26.4541299+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3301158f-9f39-444e-a9c4-b7d3c0972981" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="WeatherSvcTests.WeatherForecastControllerTest.WeatherForecastEndpoint_exists" storage="c:\users\punne\documents\gitprojects\weathersvc\weathersvctests\bin\debug\net7.0\weathersvctests.dll" id="16dfcdb1-c21e-cfc9-ce2c-c7ad6fb37cdf">
+      <Execution id="3301158f-9f39-444e-a9c4-b7d3c0972981" />
+      <TestMethod codeBase="C:\Users\punne\Documents\GitProjects\WeatherSvc\WeatherSvcTests\bin\Debug\net7.0\WeatherSvcTests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="WeatherSvcTests.WeatherForecastControllerTest" name="WeatherForecastEndpoint_exists" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="16dfcdb1-c21e-cfc9-ce2c-c7ad6fb37cdf" executionId="3301158f-9f39-444e-a9c4-b7d3c0972981" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.4.5+1caef2f33e (64-bit .NET 7.0.1)&#xD;
+[xUnit.net 00:00:01.84]   Discovering: WeatherSvcTests&#xD;
+[xUnit.net 00:00:01.87]   Discovered:  WeatherSvcTests&#xD;
+[xUnit.net 00:00:01.87]   Starting:    WeatherSvcTests&#xD;
+[xUnit.net 00:00:01.94]   Finished:    WeatherSvcTests&#xD;
+</StdOut>
+    </Output>
+    <CollectorDataEntries>
+      <Collector agentName="DESKTOP-NKLSER9" uri="datacollector://microsoft/CoverletCodeCoverage/1.0" collectorDisplayName="XPlat code coverage">
+        <UriAttachments>
+          <UriAttachment>
+            <A href="DESKTOP-NKLSER9\coverage.cobertura.xml"></A>
+          </UriAttachment>
+        </UriAttachments>
+      </Collector>
+    </CollectorDataEntries>
+  </ResultSummary>
+</TestRun>
