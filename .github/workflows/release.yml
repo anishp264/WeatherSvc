@@ -1,5 +1,6 @@
 name: CI/CD Pipeline
 
+#on: push
 on: pull_request
 
 env:
@@ -10,15 +11,6 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    - name: Show all files
-      run: dir
-      
-    - name: Delete WeatherSvc Directory
-      run: |
-        if [ -d "coverage" ]; then
-          sudo rm -rf coverage
-        fi    
-        
     - name: Checkout code
       uses: actions/checkout@v2
 
@@ -35,14 +27,14 @@ jobs:
       run: |
         docker --version
 
-    - name: Show Contents
-      run: cat Config.xml
+    #- name: Show Contents
+      #run: cat Config.xml
 
-    - name: Copy config.xml
-      run: cp Config.xml NuGet.Config
+    #- name: Copy config.xml
+      #run: cp Config.xml NuGet.Config
 
-    - name: Show NuGet Contents
-      run: cat NuGet.Config
+    #- name: Show NuGet Contents
+      #run: cat NuGet.Config
 
     - name: Debugging information
       run: |
@@ -53,12 +45,6 @@ jobs:
     - name: Build the Docker image
       run: sudo docker build -t weathersvctestdocker -f Dockerfile .
 
-    - name: Remove Existing Docker Container if it Exists
-      run: |
-        if [ $(sudo docker ps -a -q -f name=weathersvc-test-container) ]; then
-          sudo docker rm weathersvc-test-container
-        fi
-
     - name: Run tests in Docker
       run: sudo docker run --name weathersvc-test-container weathersvctestdocker
 
@@ -67,33 +53,8 @@ jobs:
         mkdir -p ${{ github.workspace }}/coverage
         sudo docker cp weathersvc-test-container:/app/tests/TestResults/ ${{ github.workspace }}/coverage
 
-    #- name: Setup .NET Core
-      #uses: actions/setup-dotnet@v2
-      #with:
-        #dotnet-version: '6.x' # Specify the .NET version
-    
-    #- name: Install ReportGenerator
-      #run: |
-        ##sudo apt install dotnet-host
-        #sudo dotnet tool install -g dotnet-reportgenerator-globaltool
-
-    - name: Install ReportGenerator if not present
-      run: |
-        if [ ! -f $HOME/.dotnet/tools/dotnet-reportgenerator-globaltool ]; then
-          echo "ReportGenerator not found, installing..."
-          sudo dotnet tool install -g dotnet-reportgenerator-globaltool
-        else
-          echo "ReportGenerator already installed."
-        fi
-      shell: bash
-
-    #- name: Install ReportGenerator
-      #run: |
-        #sudo apt install -y dotnet-sdk-6.0
-        #sudo dotnet tool install -g dotnet-reportgenerator-globaltool
-
-    - name: Add dotnet tools to PATH
-      run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+    - name: Install ReportGenerator
+      run: sudo dotnet tool install -g dotnet-reportgenerator-globaltool
 
     - name: Generate Code Coverage Report
       run: |
@@ -103,6 +64,7 @@ jobs:
         -reporttypes:Html
 
     - name: Upload coverage report as artifact
+      if: always()
       uses: actions/upload-artifact@v2
       with:
         name: coverage-report
