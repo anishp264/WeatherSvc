@@ -8,7 +8,14 @@ jobs:
       runs-on: self-hosted
   
       steps:
-      - uses: actions/checkout@v3
+      - name: Delete WeatherSvc Directory
+        run: |
+          if [ -d "coverage" ]; then
+            sudo rm -rf coverage
+          fi   
+          
+      - name: Checkout Code
+        uses: actions/checkout@v3
       
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
