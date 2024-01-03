@@ -38,3 +38,13 @@ docker run -it --rm -p 8080:80 anishpunnen/weather_svc_image
 dotnet tool install -g dotnet-reportgenerator-globaltool
 
 reportgenerator "-reports:TestResults\_c1365cd0a849_2023-12-17_13_01_49.trx" "-targetdir:TestResults" -reporttypes:Html
+
+
+
+runner commands
+
+sudo usermod -aG docker $USER
+
+$ groups $USER
+
+whoami
