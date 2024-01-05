@@ -28,10 +28,11 @@ jobs:
     #      sudo apt-get install -y dotnet-sdk-7.0
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version:  6.0.x
-               
+        run: |
+            sudo wget https://dot.net/v1/dotnet-install.sh
+            sudo chmod +x dotnet-install.sh
+            sudo ./dotnet-install.sh --channel 6.
+
       - name: Restore dependencies
         run: dotnet restore
         
