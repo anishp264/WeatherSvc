@@ -48,6 +48,10 @@ jobs:
     - name: Run tests in Docker
       run: sudo docker run --name weathersvc-test-container weathersvctestdocker
 
+    - name: Debug - List files in container directory
+      run: |
+        sudo docker exec weathersvc-test-container ls /app/tests/coverage
+
     - name: Copy file from Docker container
       run: |
         sudo docker cp weathersvc-test-container:/app/tests/coverage/coverage.cobertura.xml ./coverage.cobertura.xml
