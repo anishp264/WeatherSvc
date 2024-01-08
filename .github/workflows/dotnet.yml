@@ -55,7 +55,7 @@ jobs:
           cat coverage/*/coverage.cobertura.xml
 
       - name: Copy file
-        run: cp coverage/*/coverage.cobertura.xml runner/_work/starter-svc/starter-svc/starter.Tests/coverage.cobertura.xml
+        run: cp coverage/*/coverage.cobertura.xml coverage.cobertura.xml
 
 
       - name: Code Coverage Summary Report
