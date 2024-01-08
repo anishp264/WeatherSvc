@@ -46,11 +46,13 @@ jobs:
       run: sudo docker build -t weathersvctestdocker -f Dockerfile .
 
     - name: Run tests in Docker
-      run: sudo docker run --name weathersvc-test-container weathersvctestdocker
-
-    - name: Debug - List files in container directory
       run: |
-        sudo docker exec weathersvc-test-container ls /app/tests/coverage
+        sudo docker run --name weathersvc-test-container weathersvctestdocker
+        sudo docker wait weathersvc-test-container
+
+    #- name: Debug - List files in container directory
+    #run: |
+    #    sudo docker exec weathersvc-test-container ls /app/tests/coverage
 
     - name: Copy file from Docker container
       run: |
