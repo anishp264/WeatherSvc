@@ -22,5 +22,5 @@ ENTRYPOINT ["dotnet", "test", "/src/WeatherSvcTests/WeatherSvcTests.csproj", \
            "--logger:trx", \
            "--results-directory:/app/tests/TestResults", \
            "/p:CollectCoverage=true", \
-           "/p:CoverletOutput=/app/tests/TestResults/", \
+           "/p:CoverletOutput=/app/tests/coverage/", \
            "/p:CoverletOutputFormat=cobertura"]
