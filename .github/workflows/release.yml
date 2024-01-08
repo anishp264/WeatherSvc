@@ -48,10 +48,14 @@ jobs:
     - name: Run tests in Docker
       run: sudo docker run --name weathersvc-test-container weathersvctestdocker
 
+    - name: Copy file from Docker container
+      run: |
+        sudo docker cp weathersvc-test-container:/app/tests/coverage/coverage.cobertura.xml ./coverage.cobertura.xml
+
     - name: Code Coverage Summary Report
       uses: irongut/CodeCoverageSummary@v1.3.0
       with:
-        filename: '/app/tests/coverage/coverage.cobertura.xml'
+        filename: './coverage.cobertura.xml'
         badge: true
         format: 'markdown'
         output: 'both'
