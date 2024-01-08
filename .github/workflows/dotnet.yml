@@ -55,7 +55,9 @@ jobs:
           cat coverage/*/coverage.cobertura.xml
 
       - name: Copy file
-        run: cp coverage/*/coverage.cobertura.xml coverage.cobertura.xml
+        run: |
+          mkdir -p worker  
+          cp coverage/*/coverage.cobertura.xml worker/coverage.cobertura.xml
 
 
       - name: Code Coverage Summary Report
