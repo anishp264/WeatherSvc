@@ -5,7 +5,7 @@ on: push
 
 env:
     IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/weather_svc_image
-    IMAGE_TAG: 110 + ${{ github.run_number }}
+    IMAGE_TAG: ${{ 110 + github.run_number }}
 
 jobs:
     build:
