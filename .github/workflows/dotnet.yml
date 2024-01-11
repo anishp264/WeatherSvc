@@ -110,7 +110,7 @@ jobs:
           path: CodeCoverage/
 
     publish:    
-      needs: build
+      needs: build, setup-run-number
       runs-on: ubuntu-latest
         #self-hosted
 
