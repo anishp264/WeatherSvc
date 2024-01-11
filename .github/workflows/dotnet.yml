@@ -20,7 +20,8 @@ jobs:
       needs: setup-run-number
       runs-on: ubuntu-latest
         #self-hosted
-  
+      outputs:
+          modified_run_number: ${{ needs.setup-run-number.outputs.modified_run_number }}
       steps:
       - name: Use modified run number
         run: echo "The modified run number is ${{ needs.setup-run-number.outputs.modified_run_number }}"
@@ -110,7 +111,7 @@ jobs:
           path: CodeCoverage/
 
     publish:    
-      needs: build, setup-run-number
+      needs: build
       runs-on: ubuntu-latest
         #self-hosted
 
