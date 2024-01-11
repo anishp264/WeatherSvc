@@ -1,0 +1,11 @@
+name: CI
+
+on: push
+
+jobs:
+    deploy:
+        uses: anishp264/.github/.github/workflows/ci_dotNet.yml
+        with:
+            project-name: 'weather_svc_image'
+            run-number-offset: 131
+        secrets: inherit
