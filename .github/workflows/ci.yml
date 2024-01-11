@@ -4,7 +4,7 @@ on: push
 
 jobs:
     deploy:
-        uses: anishp264/.github/.github/workflows/ci_dotNet.yml
+        uses: anishp264/.github/.github/workflows/ci_dotNet.yml@master
         with:
             project-name: 'weather_svc_image'
             run-number-offset: 131
