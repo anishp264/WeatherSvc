@@ -148,7 +148,7 @@ jobs:
       - name: Build the WeatherSvcApi Docker image
         run: |
           cd WeatherSvcApi
-          docker build -t ${{ env.IMAGE_NAME }}:${{ needs.setup-run-number.outputs.modified_run_number }} -f Dockerfile .
+          docker build -t ${{ env.IMAGE_NAME }}:${{ needs.build.outputs.modified_run_number }} -f Dockerfile .
 
       - name: Push the Docker image to Docker Hub
-        run: docker push ${{ env.IMAGE_NAME }}:${{ needs.setup-run-number.outputs.modified_run_number }}
+        run: docker push ${{ env.IMAGE_NAME }}:${{ needs.build.outputs.modified_run_number }}
