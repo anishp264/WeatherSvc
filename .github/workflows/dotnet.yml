@@ -5,17 +5,24 @@ on: push
 
 env:
     IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/weather_svc_image
-    IMAGE_TAG: ${{ 110 + github.run_number }}
-
+    
 jobs:
+    setup-run-number:
+        runs-on: ubuntu-latest
+        outputs:
+          modified_run_number: ${{ steps.set_run_number.outputs.modified_run_number }}
+        steps:
+          - name: Calculate modified run number
+            id: set_run_number
+            run: echo "modified_run_number=$(echo $GITHUB_RUN_NUMBER + 131 | bc)" >> $GITHUB_ENV
     build:
   
       runs-on: ubuntu-latest
         #self-hosted
   
       steps:
-      - name: Show Image Tag
-        run: echo echo "The adjusted run number is $IMAGE_TAG"
+      - name: Use modified run number
+        run: echo "The modified run number is ${{ needs.setup-run-number.outputs.modified_run_number }}"
       
       - name: Delete WeatherSvc Directory
         run: |
@@ -136,7 +143,7 @@ jobs:
       - name: Build the WeatherSvcApi Docker image
         run: |
           cd WeatherSvcApi
-          docker build -t ${{ env.IMAGE_NAME }}:${{ github.run_number }} -f Dockerfile .
+          docker build -t ${{ env.IMAGE_NAME }}:${{ needs.setup-run-number.outputs.modified_run_number }} -f Dockerfile .
 
       - name: Push the Docker image to Docker Hub
-        run: docker push ${{ env.IMAGE_NAME }}:${{ github.run_number }}
+        run: docker push ${{ env.IMAGE_NAME }}:${{ needs.setup-run-number.outputs.modified_run_number }}
