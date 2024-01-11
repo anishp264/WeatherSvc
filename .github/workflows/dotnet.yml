@@ -16,7 +16,7 @@ jobs:
             id: set_run_number
             run: echo "modified_run_number=$(echo $GITHUB_RUN_NUMBER + 131 | bc)" >> $GITHUB_ENV
     build:
-  
+      needs: setup-run-number
       runs-on: ubuntu-latest
         #self-hosted
   
