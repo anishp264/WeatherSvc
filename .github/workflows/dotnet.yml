@@ -120,7 +120,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Use modified run number
-        run: echo "The modified run number is ${{ needs.setup-run-number.outputs.modified_run_number }}"
+        run: echo "The modified run number is ${{ needs.build.outputs.modified_run_number }}"
 
       - name: Install Docker
         run: |
