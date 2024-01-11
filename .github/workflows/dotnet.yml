@@ -15,7 +15,7 @@ jobs:
         steps:
           - name: Calculate modified run number
             id: set_run_number
-            run: echo "::set-output name=modified_run_number::$(($GITHUB_RUN_NUMBER + env.BASE_GITHUB_RUN_NUMER))"
+            run: echo "::set-output name=modified_run_number::$(($GITHUB_RUN_NUMBER + $env.BASE_GITHUB_RUN_NUMER))"
 
     build:
       needs: setup-run-number
