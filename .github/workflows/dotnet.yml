@@ -14,7 +14,8 @@ jobs:
         steps:
           - name: Calculate modified run number
             id: set_run_number
-            run: echo "modified_run_number=$(echo $GITHUB_RUN_NUMBER + 131 | bc)" >> $GITHUB_ENV
+            run: echo "::set-output name=modified_run_number::$(($GITHUB_RUN_NUMBER + 131))"
+
     build:
       needs: setup-run-number
       runs-on: ubuntu-latest
