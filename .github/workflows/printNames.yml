@@ -1,0 +1,46 @@
+name: ASP.NET Solution and Test Project Finder
+
+on: [push]
+
+jobs:
+  find-names:
+    runs-on: ubuntu-latest
+
+    outputs:
+      solution-name: ${{ steps.find-solution.outputs.solution-name }}
+      test-project-name: ${{ steps.find-test-project.outputs.test-project-name }}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Find Solution File
+      id: find-solution
+      run: |
+        solution_file=$(find . -name "*.sln" | head -n 1)
+        echo "Solution file found: $solution_file"
+        echo "::set-output name=solution-name::$(basename "$solution_file")"
+
+    - name: Find Test Project
+      id: find-test-project
+      run: |
+        test_project=$(find . -name "*Tests.csproj" | head -n 1)
+        echo "Test project found: $test_project"
+        echo "::set-output name=test-project-name::$(basename "$test_project")"
+
+  third-job:
+    needs: find-names
+    runs-on: ubuntu-latest
+
+    steps:
+    - run: |
+        echo "Solution Name in Third Job: ${{ needs.find-names.outputs.solution-name }}"
+        echo "Test Project Name in Third Job: ${{ needs.find-names.outputs.test-project-name }}"
+
+  fourth-job:
+    needs: find-names
+    runs-on: ubuntu-latest
+
+    steps:
+    - run: |
+        echo "Solution Name in Fourth Job: ${{ needs.find-names.outputs.solution-name }}"
+        echo "Test Project Name in Fourth Job: ${{ needs.find-names.outputs.test-project-name }}"
