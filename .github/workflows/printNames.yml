@@ -17,15 +17,17 @@ jobs:
       id: find-solution
       run: |
         solution_file=$(find . -name "*.sln" | head -n 1)
-        echo "Solution file found: $solution_file"
-        echo "::set-output name=solution-name::$(basename "$solution_file")"
+        solution_name=$(basename "$solution_file" .sln)
+        echo "Solution file found: $solution_name"
+        echo "::set-output name=solution-name::$solution_name"
 
     - name: Find Test Project
       id: find-test-project
       run: |
-        test_project=$(find . -name "*Tests.csproj" | head -n 1)
-        echo "Test project found: $test_project"
-        echo "::set-output name=test-project-name::$(basename "$test_project")"
+        test_project=$(find . -name "*.Tests.csproj" | head -n 1)
+        test_project_name=$(basename "$test_project" .csproj)
+        echo "Test project found: $test_project_name"
+        echo "::set-output name=test-project-name::$test_project_name"
 
   third-job:
     needs: find-names
