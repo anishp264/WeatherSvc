@@ -24,7 +24,11 @@ jobs:
     - name: Find Test Project
       id: find-test-project
       run: |
-        test_project=$(find . -name "*Tests.csproj" | head -n 1)
+        test_project=$(find . -name "*.Tests.csproj" | head -n 1)
+        if [ -z "$test_project" ]; then
+          echo "No test project found"
+          exit 1
+        fi
         test_project_name=$(basename "$test_project" .csproj)
         echo "Test project found: $test_project_name"
         echo "::set-output name=test-project-name::$test_project_name"
